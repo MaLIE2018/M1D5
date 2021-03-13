@@ -179,8 +179,9 @@ const dice = () => Math.floor(Math.random() * (7 - 1) + 1)
 */
 
 const whoIsBigger = function(n1, n2) {
-    return Math.max(n1, n2)
-}
+        return Math.max(n1, n2)
+    }
+    // n1 > n2 ? n1:n2
 
 /* Ex.3
     Write a function called "splitMe" which receives a string as a parameter and 
@@ -202,6 +203,8 @@ const deleteOne = function(myString, myBool) {
     return myString.slice(0, myString.length - 1)
 }
 
+//console.log('deleteOne("Strive", true):', deleteOne("Strive", true))
+
 /* Ex.5
    Write a function called "onlyLetters" which receives a string as a parameter 
    and returns it removing all the digits.
@@ -209,6 +212,7 @@ const deleteOne = function(myString, myBool) {
 */
 
 const onlyLetters = function(myString) {
+
         let numbers = new RegExp("[0-9]", "gi")
         return myString.replace(numbers, "")
     }
@@ -218,11 +222,15 @@ const onlyLetters = function(myString) {
         */
 
 const isThisAnEmail = function(myString) {
-        return /\S+@\S+\.\S+/.test(myString)
-    }
-    /* Ex.7
-                   Write a function called "whatDayIsIt" that should return the current day of the week.
-                */
+    return /\S+@\S+\.\S+/.test(myString)
+}
+
+isThisAnEmail("liesbhsc@dfdf.ssd")
+
+
+/* Ex.7
+               Write a function called "whatDayIsIt" that should return the current day of the week.
+            */
 
 const whatDayIsit = function() {
     switch (new Date().getDay()) {
@@ -291,15 +299,16 @@ const howManyDays = function(date = new Date()) {
 */
 
 const isTodayMyBirthday = function() {
-    let myBirthday = new Date("01/27/1991")
+    let myBirthday = new Date(1991, 0, 28)
+    let today = new Date()
     let myDay = myBirthday.getDate()
     let myMonth = myBirthday.getMonth()
     let myYear = myBirthday.getFullYear()
-    let today = new Date(Date.now())
+
     return (today.getDate() === myDay &&
-        today.getMonth() === myMonth &&
-        today.getFullYear() === myYear)
+        today.getMonth() === myMonth)
 }
+console.log('new Date (1991,0, 28):', new Date(1991, 0, 28))
 
 
 // JS Arrays // Objs
@@ -309,7 +318,9 @@ const isTodayMyBirthday = function() {
    Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
 */
 
-const deleteProp = function(mysteriousObj = {}, myString) {
+
+
+function deleteProp(mysteriousObj = {}, myString) {
     delete mysteriousObj[myString]
     return mysteriousObj
 }
@@ -397,12 +408,21 @@ const sumAllTheYears = function(movies) {
 const searchByTitle = function(movies, lookUp) {
     let matchedMovies = []
     for (const movie of movies) {
-        if (movie.Title.toLowerCase().includes(lookUp.toLowerCase())) {
+        // if (movie.Title.toLowerCase().includes(lookUp.toLowerCase()))
+        //     matchedMovies.push(movie)
+        if (movie.Title.indexOf(lookUp) !== -1)
             matchedMovies.push(movie)
-        }
     }
     return matchedMovies
 }
+
+
+// console.log('searchByTitle(movies, "ring"):', searchByTitle(movies, "ring"))
+
+
+
+
+//index of 
 
 /* Ex.19
     Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
@@ -447,13 +467,29 @@ const removeIndex = function(movies, index) {
   ***
 */
 
-const halfTree = function(num) {
-    let asterix = "*"
-    let output = ""
-    for (let i = 0; i < num; i++) {
-        console.log(output = output + asterix)
+// const halfTree = function(num) {
+//     let asterix = "*"
+//     let output = ""
+//     for (let i = 0; i < num; i++) {
+//         console.log(output = output + asterix)
+//     }
+// }
+
+function halfTree(height) {
+    for (let i = 0; i < height; i++) {
+        console.log('outerloop')
+        console.log('i:', i)
+        let toPrint = ""
+        for (let j = 0; j < i + 1; j++) {
+            console.log('innerlopp')
+            console.log('j:', j)
+            toPrint += "*"
+        }
+        console.log(toPrint)
     }
 }
+
+console.log('halfTree(3):', halfTree(3))
 
 /* Ex.22 
   Create a function called "tree" which receives a number as a parameter 
@@ -474,6 +510,7 @@ const whiteSpace = function(num) {
 }
 
 //console.log(whiteSpace(1));
+// str.repeat(2 )
 
 const tree = function(num) {
     let asterix = "*"
@@ -490,7 +527,6 @@ const tree = function(num) {
         }
         k--
     }
-
 }
 
 /* Ex.23
